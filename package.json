@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Typescript SDK for Flutterwave core",
   "main": "lib/index.js",
+  "typings": "./lib/index.d.ts",
   "repository": "git@github.com:mrfoh/flutterwavecore.git",
   "author": "Patrick Foh <patrickfoh@gmail.com>",
   "license": "MIT",
