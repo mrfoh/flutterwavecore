@@ -1,0 +1,46 @@
+{
+  "name": "flutterwavecore",
+  "version": "0.0.1",
+  "description": "Typescript SDK for Flutterwave core",
+  "main": "lib/index.js",
+  "repository": "git@github.com:mrfoh/flutterwavecore.git",
+  "author": "Patrick Foh <patrickfoh@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "./node_modules/.bin/tsc"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/joi": "^13.0.7",
+    "@types/request": "^2.47.0",
+    "jest": "^22.4.3",
+    "ts-jest": "^22.4.3",
+    "typescript": "^2.8.1"
+  },
+  "files": [
+    "lib"
+  ],
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "dependencies": {
+    "joi": "^13.2.0",
+    "nod3des": "^0.0.3",
+    "request": "^2.85.0"
+  }
+}
