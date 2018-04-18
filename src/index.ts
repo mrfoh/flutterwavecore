@@ -10,7 +10,13 @@ const defaults: FlutterwaveOptions = {
 class Flutterwave {
     private flutterwave: FlutterwaveBase;
     Card: FlutterwaveCard;
-
+    
+    /**
+     * 
+     * @param {string} merchant_key 
+     * @param {string} api_key 
+     * @param {FlutterwaveOptions} options 
+     */
     constructor(merchant_key: string, api_key: string, options?: Partial<FlutterwaveOptions>) {
         if (!merchant_key || !api_key) throw new Error('merchant_key and api_key not defined');
 
