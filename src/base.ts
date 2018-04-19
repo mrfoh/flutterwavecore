@@ -1,4 +1,4 @@
-import { post, get } from "request";
+import { post } from "request";
 import { STAGING_URL, PRODUCTION_URL } from './constants';
 import { FlutterwaveOptions } from './types';
 import { encrypt } from './helpers/security';
