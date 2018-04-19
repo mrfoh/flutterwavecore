@@ -86,6 +86,7 @@ export interface CardTokenChargeOptions {
     custid?: string;
     narration?: string;
     chargetoken: string;
+    country?: Country;
     cardtype?: string;
 }
 
