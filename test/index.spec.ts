@@ -10,7 +10,7 @@ describe("Flutterwave spec", () => {
     });
 
     it("Card should have required methods", () => {
-        const fw = new Flutterwave('tk_hmzRdpMe2U','tk_CFMKpvoUA1LfPWDQd9m4');
+        const fw = new Flutterwave('tk_hmzRdpMe2U','tk_CFMKpvoUA1LfPWDQd9m4', { sandbox: true });
         const Card = fw.Card;
 
         expect(Card.tokenize).toBeInstanceOf(Function);
