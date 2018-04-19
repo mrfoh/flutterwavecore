@@ -24,28 +24,9 @@ export default class FlutterwaveBase {
         return encrypt(this.apiKey, payload);
     }
 
-    post(uri: string, payload: any) {
+    post<T>(uri: string, payload: any): Promise<T> {
         return new Promise((resolve, reject) => {
             post(uri, {
-                json: true,
-                body: payload,
-                headers: {
-                    'Aceept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }, (error, response, body) => {
-                if (error) reject(error);
-                if (response.statusCode >= 400) reject(body);
-                if (body && body.status === 'error') reject(body);
-
-                resolve(body);
-            });
-        });
-    }
-
-    get(uri: string, payload: any) {
-        return new Promise((resolve, reject) => {
-            get(uri, {
                 json: true,
                 body: payload,
                 headers: {
