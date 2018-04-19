@@ -36,6 +36,7 @@ import validateCardChargePayload from "./validation/charge";
 import validateEnquiryPayload from "./validation/enquiry";
 import validateCardEnquiryPayload from "./validation/enquiry-validate";
 import validateTransasctionStatusPayload from "./validation/transaction-status";
+import { GenericResponse, GenericResponseExtended, EnquiryResponseData, TransactionStatusResponse } from "./response";
 
 export default class FlutterwaveCard {
     private fwBase: FlutterwaveBase;
@@ -82,112 +83,112 @@ export default class FlutterwaveCard {
     /**
      * Tokenize a card to charge later
      * @param {CardTokenizeOptions} options
-     * @returns {Promise<{}>}
+     * @returns {Promise<{GenericResponse}>}
      */
-    async tokenize(options: CardTokenizeOptions): Promise<{}> {
+    async tokenize(options: CardTokenizeOptions): Promise<GenericResponse> {
        const value = validateTokenizePayload(options);
        const payload = this.prepare(value);
-       return this.fwBase.post(this.tokenizeEndpoint, payload);
+       return this.fwBase.post<GenericResponse>(this.tokenizeEndpoint, payload);
     }
     /**
      * Preauthorize funds on a tokenized card
      * @param {CardPreauthorizeOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<{GenericResponseExtended}>}
      */
-    async preauthorize(options: CardPreauthorizeOptions): Promise<{}> {
+    async preauthorize(options: CardPreauthorizeOptions): Promise<GenericResponseExtended> {
         const value = validatePreauthorizePayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.preauthorizeEndpoint, payload);
+        return this.fwBase.post<GenericResponseExtended>(this.preauthorizeEndpoint, payload);
     }
     /**
      * Capture funds preauthorizedon a tokenized card
      * @param {CardCaptureOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<{GenericResponseExtended}>}
      */
-    async capture(options: CardCaptureOptions): Promise<{}> {
+    async capture(options: CardCaptureOptions): Promise<GenericResponseExtended> {
         const value = validateGenericPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.captureEndpoint, payload);
+        return this.fwBase.post<GenericResponseExtended>(this.captureEndpoint, payload);
     }
     /**
      * Charge tokenized card for an amount
      * @param {CardTokenChargeOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<GenericResponse>}
      */
-    async chargeWithToken(options: CardTokenChargeOptions): Promise<{}> {
+    async chargeWithToken(options: CardTokenChargeOptions): Promise<GenericResponse> {
         const value = validateCardTokenChargePayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.chargeEndpoint, payload);
+        return this.fwBase.post<GenericResponse>(this.chargeEndpoint, payload);
     }
     /**
      * Tokenize and charge card
      * @param {CardChargeOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<GenericResponse>}
      */
-    async charge(options: CardChargeOptions): Promise<{}> {
+    async charge(options: CardChargeOptions): Promise<GenericResponse> {
         const value = validateCardChargePayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.chargeEndpoint, payload);
+        return this.fwBase.post<GenericResponse>(this.chargeEndpoint, payload);
     }
     /**
      * Refund funds on a preauthorized card
      * @param {CardRefundOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<GenericResponseExtended>}
      */
-    async refund(options: CardRefundOptions): Promise<{}> {
+    async refund(options: CardRefundOptions): Promise<GenericResponseExtended> {
         const value = validateGenericPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.refundEndpoint, payload);
+        return this.fwBase.post<GenericResponseExtended>(this.refundEndpoint, payload);
     }
 
     /**
      * Void preauthorized funds on a tokenized card
      * @param {CardVoidOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<GenericResponseExtended>}
      */
-    async void(options: CardVoidOptions): Promise<{}> {
+    async void(options: CardVoidOptions): Promise<GenericResponseExtended> {
         const value = validateGenericPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.voidEndpoint, payload);
+        return this.fwBase.post<GenericResponseExtended>(this.voidEndpoint, payload);
     }
     /**
      * Validate a tokenization 
      * @param {CardValidateOptions} options 
-     * @returns {Promise<{}>}
+     * @returns {Promise<GenericResponse>}
      */
-    async validate(options: CardValidateOptions): Promise<{}> {
+    async validate(options: CardValidateOptions): Promise<GenericResponse> {
         const value = validatePayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.validateEndpoint, payload);
+        return this.fwBase.post<GenericResponse>(this.validateEndpoint, payload);
     }
     /**
      * Card Enquiry
      * @param {CardEnquiryOptions} options 
      * @returns {Promise<{}>}
      */
-    async enquiry(options: CardEnquiryOptions): Promise<{}> {
+    async enquiry(options: CardEnquiryOptions): Promise<EnquiryResponseData> {
         const value = validateEnquiryPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.enquiryEndpoint, payload);
+        return this.fwBase.post<EnquiryResponseData>(this.enquiryEndpoint, payload);
     }
     /**
      * Validate a Card Enquiry
      * @param {CardEnquiryValidateOptions} options 
      * @returns {Promise<{}>}
      */
-    async validateEnquiry(options: CardEnquiryValidateOptions): Promise<{}> {
+    async validateEnquiry(options: CardEnquiryValidateOptions): Promise<EnquiryResponseData> {
         const value = validateCardEnquiryPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.validateEnquiryEndpoint, payload);
+        return this.fwBase.post<EnquiryResponseData>(this.validateEnquiryEndpoint, payload);
     }
     /**
      * Get transaction status
      * @param {TransactionStatusOptions} options 
      * @returns {Promise<{}>}
      */
-    async transactionStatus(options: TransactionStatusOptions): Promise<{}> {
+    async transactionStatus(options: TransactionStatusOptions): Promise<TransactionStatusResponse> {
         const value = validateTransasctionStatusPayload(options);
         const payload = this.prepare(value);
-        return this.fwBase.post(this.transactionStatusEndpoint, payload);
+        return this.fwBase.post<TransactionStatusResponse>(this.transactionStatusEndpoint, payload);
     }
 }
