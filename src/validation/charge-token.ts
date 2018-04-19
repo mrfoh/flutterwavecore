@@ -11,6 +11,8 @@ function validateCardTokenChargePayload(data: CardTokenChargeOptions) {
             .string()
             .required()
             .uppercase(),
+        country: joi
+            .string(),
         chargetoken: joi
             .strict()
             .required(),
