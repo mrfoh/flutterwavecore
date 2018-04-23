@@ -1,6 +1,6 @@
 {
   "name": "flutterwavecore",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Typescript SDK for Flutterwave core",
   "main": "lib/index.js",
   "typings": "./lib/index.d.ts",
