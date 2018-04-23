@@ -30,7 +30,7 @@ export default class FlutterwaveBase {
                 json: true,
                 body: payload,
                 headers: {
-                    'Aceept': 'application/json',
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             }, (error, response, body) => {
