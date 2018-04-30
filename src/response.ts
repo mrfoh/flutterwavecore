@@ -20,7 +20,7 @@ export interface EnquiryResponseData {
 }
 
 export interface ResponseDataExtended extends ResponseData {
-    authorizeid: string;
+    authorizeId: string;
 }
 export interface GenericResponse {
     data: ResponseData
