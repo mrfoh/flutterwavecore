@@ -19,6 +19,20 @@ export interface EnquiryResponseData {
     otpref: string;
 }
 
+export interface TransactionStatusData {
+    responsetoken?: any;
+    responsecode: string;
+    responsemessage: string;
+    transactionreference: string;
+    otptransactionidentifier: string;
+    responsehtml?: any;
+    batchno: string;
+    merchtransactionreference: string;
+    orderinfo: string;
+    receiptno: string;
+    transactionno: string;
+}
+
 export interface ResponseDataExtended extends ResponseData {
     authorizeId: string;
 }
@@ -39,15 +53,5 @@ export interface EnquiryResponse {
 }
 
 export interface TransactionStatusResponse {
-    responsetoken?: any;
-    responsecode: string;
-    responsemessage: string;
-    transactionreference: string;
-    otptransactionidentifier: string;
-    responsehtml?: any;
-    batchno: string;
-    merchtransactionreference: string;
-    orderinfo: string;
-    receiptno: string;
-    transactionno: string;
+    data: TransactionStatusData;
 }
