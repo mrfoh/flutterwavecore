@@ -33,6 +33,22 @@ export interface TransactionStatusData {
     transactionno: string;
 }
 
+export interface ChargeRefundResponseData {
+    responsecode: string;
+    responsetoken: string;
+    responsemessage: string;
+    transactionreference: string;
+    otptransactionidentifier: string;
+    responsehtml: string;
+    redirecturl: string;
+    avsresponsecode: string;
+    avsresponsemessage: string;
+}
+
+export interface ChargeRefundResponse {
+    data: ChargeRefundResponseData;
+}
+
 export interface ResponseDataExtended extends ResponseData {
     authorizeId: string;
 }
