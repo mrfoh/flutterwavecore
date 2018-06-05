@@ -71,6 +71,12 @@ export interface CardCaptureOptions {
     trxauthorizeid: string;
 }
 
+export interface CardChargeRefundOptions {
+  paymentreference: string;
+  refundamount: number;
+  merchantid?: string;
+}
+
 export interface CardRefundOptions extends CardCaptureOptions {}
 
 export interface CardVoidOptions extends CardCaptureOptions {}
