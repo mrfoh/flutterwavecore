@@ -4,6 +4,7 @@ import {
     CARD_TOKENIZE_URL,
     CARD_CAPTURE_URL,
     CARD_REFUND_URL,
+    CARD_CHARGE_REFUND_URL,
     CARD_PREAUTHORIZE_URL,
     CARD_VOID_URL,
     CARD_VALIDATE_URL,
@@ -18,6 +19,7 @@ import {
     CardPreauthorizeOptions,
     CardCaptureOptions,
     CardRefundOptions,
+    CardChargeRefundOptions,
     CardVoidOptions,
     CardValidateOptions,
     CardTokenChargeOptions,
@@ -36,7 +38,8 @@ import validateCardChargePayload from "./validation/charge";
 import validateEnquiryPayload from "./validation/enquiry";
 import validateCardEnquiryPayload from "./validation/enquiry-validate";
 import validateTransasctionStatusPayload from "./validation/transaction-status";
-import { GenericResponse, GenericResponseExtended, EnquiryResponseData, TransactionStatusResponse } from "./response";
+import validateChargeRefundPayload from './validation/refund';
+import { GenericResponse, GenericResponseExtended, EnquiryResponseData, TransactionStatusResponse, ChargeRefundResponse } from './response';
 
 export default class FlutterwaveCard {
     private fwBase: FlutterwaveBase;
@@ -44,6 +47,7 @@ export default class FlutterwaveCard {
     private preauthorizeEndpoint: string;
     private captureEndpoint: string;
     private refundEndpoint: string;
+    private chargeRefundEndpoint: string;
     private voidEndpoint: string;
     private validateEndpoint: string;
     private chargeEndpoint: string;
@@ -57,6 +61,7 @@ export default class FlutterwaveCard {
         this.preauthorizeEndpoint = this.fwBase.buildEndpoint(CARD_PREAUTHORIZE_URL);
         this.captureEndpoint = this.fwBase.buildEndpoint(CARD_CAPTURE_URL);
         this.refundEndpoint = this.fwBase.buildEndpoint(CARD_REFUND_URL);
+        this.chargeRefundEndpoint = this.fwBase.buildEndpoint(CARD_CHARGE_REFUND_URL);
         this.voidEndpoint = this.fwBase.buildEndpoint(CARD_VOID_URL);
         this.validateEndpoint = this.fwBase.buildEndpoint(CARD_VALIDATE_URL);
         this.chargeEndpoint = this.fwBase.buildEndpoint(CARD_CHARGE_URL);
@@ -139,6 +144,22 @@ export default class FlutterwaveCard {
         const value = validateGenericPayload(options);
         const payload = this.prepare(value);
         return this.fwBase.post<GenericResponseExtended>(this.refundEndpoint, payload);
+    }
+
+    /**
+     * Refund a charge on a card
+     * @param {CardChargeRefundOptions} options 
+     * @returns {Promise<ChargeRefundResponse>}
+     */
+    async refundCharge(options: CardChargeRefundOptions): Promise<ChargeRefundResponse> {
+        if (this.fwBase.sandbox) throw new Error("refundCharge not available in sandbox mode");
+
+        const value = validateChargeRefundPayload(options);
+        const payload = Object.assign(value, {
+            merchantid: this.fwBase.merchantKey
+        });
+        
+        return this.fwBase.post<ChargeRefundResponse>(this.chargeRefundEndpoint, payload);
     }
 
     /**
