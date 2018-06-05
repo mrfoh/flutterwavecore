@@ -17,4 +17,5 @@ export const CARD_CHARGE_URL = "card/mvva/pay";
 export const CARD_ENQUIRY_URL = "card/mvva/cardenquiry";
 export const CARD_VALIDATE_ENQUIRY_URL = "card/mvva/cardenquiry/validate";
 export const CARD_TRANSACTION_STATUS_URL = "card/mvva/status";
+export const CARD_CHARGE_REFUND_URL= "fw/refund";
 
