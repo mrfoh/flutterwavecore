@@ -7,6 +7,7 @@ export default class FlutterwaveBase {
     readonly merchantKey: string;
     readonly apiKey: string;
     private endpoint: string;
+    readonly sandbox: boolean;
 
     constructor(merchantKey: string, apiKey: string, options: FlutterwaveOptions) {
         this.merchantKey = merchantKey;
@@ -14,6 +15,7 @@ export default class FlutterwaveBase {
         this.endpoint = options.endpoint
             ? options.endpoint
             : options.sandbox ? STAGING_URL : PRODUCTION_URL;
+        this.sandbox = options.sandbox;
     }
 
     buildEndpoint(path: string) {
