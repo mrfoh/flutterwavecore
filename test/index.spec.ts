@@ -17,6 +17,7 @@ describe("Flutterwave spec", () => {
         expect(Card.preauthorize).toBeInstanceOf(Function);
         expect(Card.capture).toBeInstanceOf(Function);
         expect(Card.refund).toBeInstanceOf(Function);
+        expect(Card.refundCharge).toBeInstanceOf(Function);
         expect(Card.void).toBeInstanceOf(Function);
         expect(Card.charge).toBeInstanceOf(Function);
         expect(Card.chargeWithToken).toBeInstanceOf(Function);
